@@ -32,7 +32,23 @@ And run 'make workshop-check' *before* committing to make sure that changes are 
 {% endcomment %}
 
 
+{% comment %}
+8< ============= For a workshop delete from here =============
+For a workshop please delete the following block until the next dashed-line
+{% endcomment %}
 
+
+<div class="alert alert-danger">
+This is the workshop template. Delete these lines and use it to
+<a href="https://carpentries.github.io/workshop-template/customization/index.html">customize</a>
+your own website. If you are running a self-organized workshop or have not put
+in a workshop request yet, please also fill in
+<a href="{{site.amy_site}}/forms/self-organised/">this workshop request form</a>
+to let us know about your workshop and our administrator may contact you if we
+need any extra information.
+</div>
+
+{% comment %}
 8< ============================= until here ==================
 {% endcomment %}
 
@@ -49,7 +65,17 @@ It looks like you are setting up a website for a Data Carpentry curriculum but y
 {% endunless %}
 {% endif %}
 
+{% comment %}
+Check SWC curriculum
+{% endcomment %}
 
+{% if site.carpentry == "swc" %}
+{% unless site.curriculum == "swc-inflammation" or site.curriculum == "swc-gapminder" %}
+<div class="alert alert-warning">
+It looks like you are setting up a website for a Software Carpentry curriculum but you haven't specified the curriculum type in the <code>_config.yml</code> file (current value in <code>_config.yml</code>: "<strong>{{ site.curriculum }}</strong>", possible values: <code>swc-inflammation</code>, or <code>swc-gapminder</code>). After editing this file, you need to run <code>make serve</code> again to see the changes reflected.
+</div>
+{% endunless %}
+{% endif %}
 
 {% comment %}
 EVENTBRITE
