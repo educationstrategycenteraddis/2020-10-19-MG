@@ -20,158 +20,99 @@ collaborative_notes:  # optional: URL for the workshop collaborative notes, e.g.
 eventbrite:           # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
 ---
 
-{% comment %} See instructions in the comments below for how to edit specific sections of this workshop template. {% endcomment %}
-
-{% comment %}
-HEADER
-
-Edit the values in the block above to be appropriate for your workshop.
-If the value is not 'true', 'false', 'null', or a number, please use
-double quotation marks around the value, unless specified otherwise.
-And run 'make workshop-check' *before* committing to make sure that changes are good.
-{% endcomment %}
-
-
-{% comment %}
-8< ============= For a workshop delete from here =============
-For a workshop please delete the following block until the next dashed-line
-{% endcomment %}
-
-
-<div class="alert alert-danger">
-This is the workshop template. Delete these lines and use it to
-<a href="https://carpentries.github.io/workshop-template/customization/index.html">customize</a>
-your own website. If you are running a self-organized workshop or have not put
-in a workshop request yet, please also fill in
-<a href="{{site.amy_site}}/forms/self-organised/">this workshop request form</a>
-to let us know about your workshop and our administrator may contact you if we
-need any extra information.
+<div>
+<table>
+	<tr>
+	<td align="center" style="background-color:white"><a href="http://www.ethernet.edu.et/"><img style="display:block;" width="100%" height="100%" src="./fig/ethernet.png" alt="Ethiopian Research and Education Network"></a></td>
+	<td align="center" style="background-color:white"><a href="http://www.esc.gov.et/"><img style="display:block;" width="100%" height="100%" src="./fig/esc.png" alt="The Education Strategy Center"></a></td>
+	<td align="center" style="background-color:white"><a href="https://www.giz.de/en/html/index.html"><img style="display:block;" width="100%" height="100%" src="./fig/GIZ-logo-final.jpg" alt="Deutsche Gesellschaft für Internationale Zusammenarbeit"></a></td>
+	
+	</tr>
+</table>
 </div>
+<!-- See instructions in the comments below for how to edit specific sections of this workshop template. -->
 
-{% comment %}
-8< ============================= until here ==================
-{% endcomment %}
+<!--
+  HEADER
 
+  Edit the values in the block above to be appropriate for your workshop.
+  If the value is not 'true', 'false', 'null', or a number, please use
+  double quotation marks around the value, unless specified otherwise.
+  And run 'bin/workshop_check.py' *before* committing to make sure that changes are good.
+-->
 
-{% comment %}
-Check DC curriculum
-{% endcomment %}
+<!--
+  EVENTBRITE
 
-{% if site.carpentry == "dc" %}
-{% unless site.curriculum == "dc-ecology" or site.curriculum == "dc-genomics" or site.curriculum == "dc-socsci" or site.curriculum == "dc-geospatial" %}
-<div class="alert alert-warning">
-It looks like you are setting up a website for a Data Carpentry curriculum but you haven't specified the curriculum type in the <code>_config.yml</code> file (current value in <code>_config.yml</code>: "<strong>{{ site.curriculum }}</strong>", possible values: <code>dc-ecology</code>, <code>dc-genomics</code>, <code>dc-socsci</code>, or <code>dc-geospatial</code>). After editing this file, you need to run <code>make serve</code> again to see the changes reflected.
-</div>
-{% endunless %}
-{% endif %}
-
-{% comment %}
-Check SWC curriculum
-{% endcomment %}
-
-{% if site.carpentry == "swc" %}
-{% unless site.curriculum == "swc-inflammation" or site.curriculum == "swc-gapminder" %}
-<div class="alert alert-warning">
-It looks like you are setting up a website for a Software Carpentry curriculum but you haven't specified the curriculum type in the <code>_config.yml</code> file (current value in <code>_config.yml</code>: "<strong>{{ site.curriculum }}</strong>", possible values: <code>swc-inflammation</code>, or <code>swc-gapminder</code>). After editing this file, you need to run <code>make serve</code> again to see the changes reflected.
-</div>
-{% endunless %}
-{% endif %}
-
-{% comment %}
-EVENTBRITE
-
-This block includes the Eventbrite registration widget if
-'eventbrite' has been set in the header.  You can delete it if you
-are not using Eventbrite, or leave it in, since it will not be
-displayed if the 'eventbrite' field in the header is not set.
-{% endcomment %}
+  This block includes the Eventbrite registration widget if
+  'eventbrite' has been set in the header.  You can delete it if you
+  are not using Eventbrite, or leave it in, since it will not be
+  displayed if the 'eventbrite' field in the header is not set.
+-->
 {% if page.eventbrite %}
-<strong>Some adblockers block the registration window. If you do not see the
-  registration box below, please check your adblocker settings.</strong>
 <iframe
   src="https://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt"
   frameborder="0"
   width="100%"
-  height="280px"
+  height="248px"
   scrolling="auto">
 </iframe>
 {% endif %}
 
-
 <h2 id="general">General Information</h2>
 
-{% comment %}
-INTRODUCTION
+<!--
+  INTRODUCTION
 
-Edit the general explanatory paragraph below if you want to change
-the pitch.
-{% endcomment %}
-{% if site.carpentry == "swc" %}
-{% include swc/intro.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/intro.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/intro.html %}
+  Edit the general explanatory paragraph below if you want to change
+  the pitch.
+-->
+{% if page.carpentry == "swc" %}
+  {% include sc/intro.html %}
+{% elsif page.carpentry == "dc" %}
+  {% include dc/intro.html %}
+{% elsif page.carpentry == "lc" %}
+  {% include lc/intro.html %}
 {% endif %}
 
-{% comment %}
-AUDIENCE
+<!--
+  AUDIENCE
 
-Explain who your audience is.  (In particular, tell readers if the
-workshop is only open to people from a particular institution.
-{% endcomment %}
-{% if site.carpentry == "swc" %}
-{% include swc/who.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/who.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/who.html %}
+  Explain who your audience is.  (In particular, tell readers if the
+  workshop is only open to people from a particular institution.
+-->
+{% if page.carpentry == "swc" %}
+  {% include sc/who.html %}
+{% elsif page.carpentry == "dc" %}
+  {% include dc/who.html %}
+{% elsif page.carpentry == "lc" %}
+  {% include lc/who.html %}
 {% endif %}
 
-{% comment %}
-LOCATION
+<!--
+  LOCATION
 
-This block displays the address and links to maps showing directions
-if the latitude and longitude of the workshop have been set.  You
-can use https://itouchmap.com/latlong.html to find the lat/long of an
-address.
-{% endcomment %}
-{% assign begin_address = page.address | slice: 0, 4 | downcase  %}
-{% if page.address == "online" %}
-{% assign online = "true_private" %}
-{% elsif begin_address contains "http" %}
-{% assign online = "true_public" %}
-{% else %}
-{% assign online = "false" %}
-{% endif %}
-{% if page.latitude and page.longitude and online == "false" %}
+  This block displays the address and links to maps showing directions
+  if the latitude and longitude of the workshop have been set.  You
+  can use http://itouchmap.com/latlong.html to find the lat/long of an
+  address.
+-->
+{% if page.latlng %}
 <p id="where">
   <strong>Where:</strong>
   {{page.address}}.
   Get directions with
-  <a href="//www.openstreetmap.org/?mlat={{page.latitude}}&mlon={{page.longitude}}&zoom=16">OpenStreetMap</a>
+  <a href="//www.openstreetmap.org/?mlat={{page.latlng | replace:',','&mlon='}}&zoom=16">OpenStreetMap</a>
   or
-  <a href="//maps.google.com/maps?q={{page.latitude}},{{page.longitude}}">Google Maps</a>.
-</p>
-{% elsif online == "true_public" %}
-<p id="where">
-  <strong>Where:</strong>
-  online at <a href="{{page.address}}">{{page.address}}</a>.
-  If you need a password or other information to access the training,
-  the instructor will pass it on to you before the workshop.
-</p>
-{% elsif online == "true_private" %}
-<p id="where">
-  <strong>Where:</strong> This training will take place online.
-  The instructors will provide you with the information you will need to connect to this meeting.
+  <a href="//maps.google.com/maps?q={{page.latlng}}">Google Maps</a>.
 </p>
 {% endif %}
 
-{% comment %}
-DATE
+<!--
+  DATE
 
-This block displays the date and links to Google Calendar.
-{% endcomment %}
+  This block displays the date and links to Google Calendar.
+-->
 {% if page.humandate %}
 <p id="when">
   <strong>When:</strong>
@@ -180,28 +121,38 @@ This block displays the date and links to Google Calendar.
 </p>
 {% endif %}
 
-{% comment %}
-SPECIAL REQUIREMENTS
+<!--
+  SPECIAL REQUIREMENTS
 
-Modify the block below if there are any special requirements.
-{% endcomment %}
+  Modify the block below if there are any special requirements.
+-->
 <p id="requirements">
   <strong>Requirements:</strong> Participants must bring a laptop with a
-  Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) that they have administrative privileges on. They should have a few specific software packages installed (listed <a href="#setup">below</a>).
+  Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) that they have administrative privileges
+  on. They should have a few specific software packages installed (listed
+  <a href="#setup">below</a>). They are also required to abide by
+  {% if page.carpentry == "swc" %}
+  Software Carpentry's
+  {% elsif page.carpentry == "dc" %}
+  Data Carpentry's
+  {% elsif page.carpentry == "lc" %}
+  Library Carpentry's
+  {% endif %}
+  <a href="{{site.swc_site}}/conduct.html">Code of Conduct</a>.
 </p>
 
-{% comment %}
-ACCESSIBILITY
+<!--
+  ACCESSIBILITY
 
-Modify the block below if there are any barriers to accessibility or
-special instructions.
-{% endcomment %}
+  Modify the block below if there are any barriers to accessibility or
+  special instructions.
+
 <p id="accessibility">
-  <strong>Accessibility:</strong>
-{% if online == "false" %}
-  We are committed to making this workshop
-  accessible to everybody. The workshop organizers have checked that:
+  <strong>Accessibility:</strong> We are committed to making this workshop
+  accessible to everybody.
+  The workshop organisers have checked that:
 </p>
+
 <ul>
   <li>The room is wheelchair / scooter accessible.</li>
   <li>Accessible restrooms are available.</li>
@@ -213,222 +164,294 @@ special instructions.
   you (e.g. sign-language interpreters, lactation facilities) please
   get in touch (using contact details below) and we will
   attempt to provide them.
-{% else %}
-  We are dedicated to providing a positive and accessible learning environment for all. Please
-  notify the instructors in advance of the workshop if you require any accommodations or if there is
-  anything we can do to make this workshop more accessible to you.
 </p>
-{% endif %}
+-->
+<!--
+  CONTACT EMAIL ADDRESS
 
-{% comment %}
-CONTACT EMAIL ADDRESS
-
-Display the contact email address set in the configuration file.
-{% endcomment %}
+  Display the contact email address set in the configuration file.
+-->
 <p id="contact">
-  <strong>Contact:</strong>
+  <strong>Contact</strong>:
   Please email
-  {% if page.email %}
-  {% for email in page.email %}
-  {% if forloop.last and page.email.size > 1 %}
-  or
+  {% if page.contact %}
+    {% for contact in page.contact %}
+      {% if forloop.last and page.contact.size > 1 %}
+        or
+      {% else %}
+        {% unless forloop.first %}
+        ,
+        {% endunless %}
+      {% endif %}
+      <a href='mailto:{{contact}}'>{{contact}}</a>
+    {% endfor %}
   {% else %}
-  {% unless forloop.first %}
-  ,
-  {% endunless %}
-  {% endif %}
-  <a href='mailto:{{email}}'>{{email}}</a>
-  {% endfor %}
-  {% else %}
-  to-be-announced
+    to-be-announced
   {% endif %}
   for more information.
 </p>
 
-<p id="roles">
-  <strong>Roles:</strong>
-  To learn more about the roles at the workshop (who will be doing what),
-  refer to <a href="https://carpentries.org/workshop_faq/#what-are-the-roles-of-everyone-participating-in-a-workshop">our Workshop FAQ</a>.
-</p>
-
-{% comment %}
-WHO CAN ATTEND?
-
-If you would like to specify who can attend the workshop,
-you can use the section below.
-
-Move the 'endcomment' tag above the beginning of the following
-<p> tag to make this section visible.
-
-Edit the text to match who can attend the workshop. For instance:
-- This workshop is open to affiliates to ABC university.
-- This workshop is open to the public.
-- If you are interested in attending this workshop, contact me@example.com
-  for more information
-
-<p id="who-can-attend">
-    <strong>Who can attend?:</strong>
-    This workshop is open to ....
-</p>
-{% endcomment %}
-
 <hr/>
 
-{% comment%}
-CODE OF CONDUCT
-{% endcomment %}
-<h2 id="code-of-conduct">Code of Conduct</h2>
+<!--
+  SCHEDULE
 
-<p>
-Everyone who participates in Carpentries activities is required to conform to the <a href="https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html">Code of Conduct</a>. This document also outlines how to report an incident if needed.
-</p>
-
-<p class="text-center">
-  <a href="https://goo.gl/forms/KoUfO53Za3apOuOK2">
-    <button type="button" class="btn btn-info">Report a Code of Conduct Incident</button>
-  </a>
-</p>
-<hr/>
-
-
-{% comment %}
-Collaborative Notes
-
-If you want to use an Etherpad, go to
-
-https://pad.carpentries.org/YYYY-MM-DD-site
-
-where 'YYYY-MM-DD-site' is the identifier for your workshop,
-e.g., '2015-06-10-esu'.
-
-Note we also have a CodiMD (the open-source version of HackMD)
-available at https://codimd.carpentries.org
-{% endcomment %}
-{% if page.collaborative_notes %}
-<h2 id="collaborative_notes">Collaborative Notes</h2>
-
-<p>
-We will use this <a href="{{ page.collaborative_notes }}">collaborative document</a> for chatting, taking notes, and sharing URLs and bits of code.
-</p>
-<hr/>
-{% endif %}
-
-
-{% comment %}
-SURVEYS - DO NOT EDIT SURVEY LINKS
-{% endcomment %}
-<h2 id="surveys">Surveys</h2>
-<p>Please be sure to complete these surveys before and after the workshop.</p>
-<p><a href="{{ site.pre_survey }}{{ site.github.project_title }}">Pre-workshop Survey</a></p>
-<p><a href="{{ site.post_survey }}{{ site.github.project_title }}">Post-workshop Survey</a></p>
-
-<hr/>
-
-
-{% comment %}
-SCHEDULE
-
-Show the workshop's schedule.  Edit the items and times in the table
-to match your plans.  You may also want to change 'Day 1' and 'Day
-2' to be actual dates or days of the week.
-{% endcomment %}
+  Show the workshop's schedule.  Edit the items and times in the table
+  to match your plans.  You may also want to change 'Day 1' and 'Day
+  2' to be actual dates or days of the week.
+-->
 <h2 id="schedule">Schedule</h2>
 
-{% if site.carpentry == "swc" %}
-{% include swc/schedule.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/schedule.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/schedule.html %}
+<!-- DO NOT EDIT SURVEY LINKS -->
+<p><em>Surveys</em></p>
+{% if page.carpentry == "swc" %} 
+<p>Please be sure to complete these surveys before and after the workshop.</p>
+<p><a href="{{ site.swc_pre_survey }}{{ site.github.project_title }}">Pre-workshop Survey</a></p>
+<p><a href="{{ site.swc_post_survey }}{{ site.github.project_title }}">Post-workshop Survey</a></p>
+{% elsif page.carpentry == "dc" %}
+  <p>Please be sure to complete these surveys before and after the workshop.</p>
+<p><a href="{{ site.dc_pre_survey }}{{ site.github.project_title }}">Pre-workshop Survey</a></p>
+<p><a href="{{ site.dc_post_survey }}{{ site.github.project_title }}">Post-workshop Survey</a></p>
+{% elsif page.carpentry == "lc" %}
+<p>Ask your instructor about pre- and post-workshop Survey details.</p>
+{% endif %}
+
+
+{% if page.carpentry == "swc" %}
+  {% include sc/schedule.html %}
+{% elsif page.carpentry == "dc" %}
+  {% include dc/schedule.html %}
+{% elsif page.carpentry == "lc" %}
+  {% include lc/schedule.html %}
+{% endif %}
+
+<!--
+  Collaborative Notes
+
+  If you want to use an Etherpad, go to
+
+      http://pad.software-carpentry.org/YYYY-MM-DD-site
+
+  where 'YYYY-MM-DD-site' is the identifier for your workshop,
+  e.g., '2015-06-10-esu'.
+-->
+{% if page.collaborative_notes %}
+<p id="collaborative_notes">
+  We will use this <a href="{{page.collaborative_notes}}">collaborative document</a> for chatting, taking notes, and sharing URLs and bits of code.
+</p>
 {% endif %}
 
 <hr/>
 
-{% comment %}
-SYLLABUS
+<!--
+  SYLLABUS
 
-Show what topics will be covered.
+  Show what topics will be covered.
 
-1. If your workshop is R rather than Python, remove the comment
-around that section and put a comment around the Python section.
-2. Some workshops will delete SQL.
-3. Please make sure the list of topics is synchronized with what you
-intend to teach.
-4. You may need to move the div's with class="col-md-6" around inside
-the div's with class="row" to balance the multi-column layout.
+  1. If your workshop is R rather than Python, remove the comment
+     around that section and put a comment around the Python section.
+  2. Some workshops will delete SQL.
+  3. Please make sure the list of topics is synchronized with what you
+     intend to teach.
+  4. You may need to move the div's with class="col-md-6" around inside
+     the div's with class="row" to balance the multi-column layout.
 
-This is one of the places where people frequently make mistakes, so
-please preview your site before committing, and make sure to run
-'tools/check' as well.
-{% endcomment %}
+  This is one of the places where people frequently make mistakes, so
+  please preview your site before committing, and make sure to run
+  'tools/check' as well.
+-->
+
 <h2 id="syllabus">Syllabus</h2>
 
-{% if site.carpentry == "swc" %}
-{% include swc/syllabus.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/syllabus.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/syllabus.html %}
+{% if page.carpentry == "swc" %}
+  {% include sc/syllabus.html %}
+{% elsif page.carpentry == "dc" %}
+  {% include dc/syllabus.html %}
+{% elsif page.carpentry == "lc" %}
+  {% include lc/syllabys.html %}
 {% endif %}
 
 <hr/>
 
-{% comment %}
-SETUP
-
-Delete irrelevant sections from the setup instructions.  Each
-section is inside a 'div' without any classes to make the beginning
-and end easier to find.
-
-This is the other place where people frequently make mistakes, so
-please preview your site before committing, and make sure to run
-'tools/check' as well.
-{% endcomment %}
-
-<h2 id="setup">Setup</h2>
-
 <p>
-  To participate in a
-  {% if site.carpentry == "swc" %}
-  Software Carpentry
-  {% elsif site.carpentry == "dc" %}
-  Data Carpentry
-  {% elsif site.carpentry == "lc" %}
-  Library Carpentry
-  {% endif %}
-  workshop,
-  you will need access to the software described below.
-  In addition, you will need an up-to-date web browser.
+  <strong>Requirements:</strong>
+Data Carpentry's teaching is hands-on, so participants are encouraged to bring in and use their own laptops to insure the proper setup of tools for an efficient workflow once you leave the workshop.  (We will provide instructions on setting up the required software several days in advance)
+<em> There are no pre-requisites, and we will assume no prior knowledge about the tools.</em> 
 </p>
+
+
+
+<h2> Software Setup</h2>
+
+<p> To participate in a Data Carpentry workshop, you will need working copies of the software described below. Please 
+make sure to install everything and try opening it to make sure it works <em>before</em> the start of your workshop. If 
+you run into any problems, please feel free to email the instructor or arrive early to your workshop on the first day.
+
+Participants should bring and use their own laptops to insure the proper setup of 
+tools for an efficient workflow once you leave the workshop.
+</p>
+
 <p>
   We maintain a list of common issues that occur during installation as a reference for instructors
   that may be useful on the
-  <a href = "{{site.swc_github}}/workshop-template/wiki/Configuration-Problems-and-Solutions">Configuration Problems and Solutions wiki page</a>.
+  <a href = "https://github.com/swcarpentry/workshop-template/wiki/Configuration-Problems-and-Solutions">Configuration Problems and Solutions wiki page</a>.
 </p>
 
-{% comment %}
-For online workshops, the section below provides:
-- installation instructions for the Zoom client
-- recommendations for setting up Learners' workspace so they can follow along
-  the instructions and the videoconferencing
+<div id="spreadsheet"> <!-- Start of 'spreadsheet' section. -->
 
-If you do not use Zoom for your online workshop, edit the file
-`_includes/install_instructions/videoconferencing.html`
-to include the relevant installation instrucctions.
-{% endcomment %}
-{% if online != "false" %}
-{% include install_instructions/videoconferencing.html %}
-{% endif %}
+<h3>A spreadsheet program</h3>
 
-{% comment %}
-These are the installation instructions for the tools used
-during the workshop.
-{% endcomment %}
+<p> For this workshop you will need a spreadsheet program. Many people already have Microsoft Excel installed, and if you do, you're set! 
+If you need a spreadsheet program, there are a few other options, like OpenOffice and LibreOffice. Install instructions for LibreOffice, which is free and open source, are here.
+  </p>
 
-{% if site.carpentry == "swc" %}
-{% include swc/setup.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/setup.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/setup.html %}
-{% endif %}
+  <div class="row">
+    <div class="col-md-4">
+      <h4 id="spreadsheet-windows">Windows</h4>
+      <ol>
+        <li>Download the LibreOffice <a href="https://www.libreoffice.org/download/libreoffice-fresh/">installer</a>.</li>
+        <li>Double click to install</li>
+        <li>Double click on icon to open.</li>
+      </ol>
+      </div>
+    <div class="col-md-4">
+        <h4 id="spreadsheet-mac">Mac OS X</h4>
+      <ol>
+        <li>Download the LibreOffice <a href="https://www.libreoffice.org/download/libreoffice-fresh/">installer</a>.</li>
+        <li>Double click to install</li>
+        <li>Double click on icon to open.</li>
+      </ol>
+    </div>
+    <div class="col-md-4">
+      <h4 id="openrefine-linux">Linux</h4>
+      <ol>
+                <li>Download the LibreOffice <a href="https://www.libreoffice.org/download/libreoffice-fresh/">installer</a>.</li>
+        <li>Double click to install</li>
+        <li>Double click on icon to open.</li>
+      </ol>
+      </div>
+  </div>
+</div> <!-- End of 'spreadsheet' section. -->
+
+<div id="openrefine"> <!-- Start of 'openrefine' section. -->
+  <h3>OpenRefine</h3>
+
+  <p>
+    OpenRefine (previously Google Refine) is a tool for data cleaning that runs through a web browser, and any browser - Safari, Firefox, Chrome, 
+      Explorer - should work fine. You will need to download OpenRefine and install it, and when you open it, it will run through the browser, but 
+      you don't need an internet connection, and the data will all be stored on your computer.
+  </p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h4 id="openrefine-windows">Windows</h4>
+      <ol>
+        <li>Download OpenRefine Windows kit <a href="http://openrefine.org/download.html">installer</a>.</li>
+        <li>To use it, unzip, and double-click on openrefine.exe (if you're having issues with openrefine.exe try refine.bat instead)</li>
+        <li>OpenRefine will then open in your web browser.</li>
+        <li>If it doesn't open automatically, open a web broswer after you've started the program and go to the URL http://localhost:3333 and you should see OpenRefine.</li>
+      </ol>
+      </div>
+    <div class="col-md-4">
+        <h4 id="openrefine-mac">Mac OS X</h4>
+      <ol>
+        <li>Download OpenRefine Mac kit <a href="http://openrefine.org/download.html">installer</a>.</li>
+        <li>Open the downloaded .dmg file</li>        
+        <li>Drag the icon in to the Applications folder</li>
+        <li>Double click on the icon and Google Refine will then open in your web browser.</li>
+        <li>If it doesn't open automatically, open a web broswer after you've started the program and go to the URL http://localhost:3333 and you should see OpenRefine.</li>
+      </ol>
+    </div>
+    <div class="col-md-4">
+      <h4 id="openrefine-linux">Linux</h4>
+      <ol>
+        <li>Download OpenRefine Linux kit <a href="http://openrefine.org/download.html">installer</a>.</li>
+        <li>To use it, extract, and type ./refine</li>
+        <li>OpenRefine will then open in your web browser.</li>
+        <li>If it doesn't open automatically, open a web broswer after you've started the program and go to the URL http://localhost:3333 and you should see OpenRefine.</li>
+      </ol>
+      </div>
+  </div>
+</div> <!-- End of 'openrefine' section. -->
+
+<div id="r"> <!-- Start of 'R' section. -->
+  <h3>R</h3>
+
+  <p>
+    <a href="http://www.r-project.org">R</a> is a programming language
+    that is especially powerful for data exploration, visualization, and
+    statistical analysis. To interact with R, we use
+    <a href="http://www.rstudio.com/">RStudio</a>.
+  </p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h4 id="r-windows">Windows</h4>
+      <a href="https://www.youtube.com/watch?v=q0PjTAylwoU">Video Tutorial</a>
+      <p>
+        Install R by downloading and running
+        <a href="http://cran.r-project.org/bin/windows/base/release.htm">this .exe file</a>
+        from <a href="http://cran.r-project.org/index.html">CRAN</a>.
+        Also, please install the
+        <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
+        Note that if you have separate user and admin accounts, you should run the 
+        installers as administrator (right-click on .exe file and select "Run as 
+        administrator" instead of double-clicking). Otherwise problems may occur later, 
+        for example when installing R packages.
+      </p>
+    </div>
+    <div class="col-md-4">
+      <h4 id="r-macosx">Mac OS X</h4>
+      <a href="https://www.youtube.com/watch?v=5-ly3kyxwEg">Video Tutorial</a>
+      <p>
+        Install R by downloading and running
+        <a href="http://cran.r-project.org/bin/macosx/R-latest.pkg">this .pkg file</a>
+        from <a href="http://cran.r-project.org/index.html">CRAN</a>.
+        Also, please install the
+        <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
+      </p>
+    </div>
+    <div class="col-md-4">
+      <h4 id="r-linux">Linux</h4>
+      <p>
+        You can download the binary files for your distribution
+        from <a href="http://cran.r-project.org/index.html">CRAN</a>. Or
+        you can use your package manager (e.g. for Debian/Ubuntu
+        run <code>sudo apt-get install r-base</code> and for Fedora run
+        <code>sudo yum install R</code>).  Also, please install the
+        <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
+      </p>
+    </div>
+  </div>
+</div> <!-- End of 'R' section. -->
+
+
+
+</div> 
+<!--
+  Uncomment this section if you are using our virtual machine.
+
+<div id="vm">
+  <h3>Virtual Machine</h3>
+
+  <p>
+    Some instructors prefer to have learners use a virtual machine (VM)
+    rather than install software on their own computers.  If your
+    instructors have chosen to do this, please:
+  </p>
+  <ol>
+    <li>
+      Install <a href="https://www.virtualbox.org/">VirtualBox</a>.
+    </li>
+    <li>
+      Download our <a href="{{site.swc_vm}}">VM image</a>.
+      <strong>Warning:</strong> this file is 1.7 GByte, so please
+      download it <em>before</em> coming to your workshop.
+    </li>
+    <li>
+      Load the VM into VirtualBox by selecting "Import Appliance" and
+      loading the <code>.ova</code> file.
+    </li>
+  </ol>
+</div>
+-->
